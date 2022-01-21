@@ -1,5 +1,6 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
+const magicImporter = require('node-sass-magic-importer')
 const { merge } = require('webpack-merge')
 
 const paths = require('./paths')
@@ -28,7 +29,14 @@ module.exports = merge(common, {
             },
           },
           'postcss-loader',
-          'sass-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              sassOptions: {
+                importer: magicImporter(),
+              },
+            },
+          },
         ],
       },
     ],

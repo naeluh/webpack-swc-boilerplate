@@ -1,0 +1,50 @@
+// Lists (unordered)
+//
+// <ul class="list">
+//   <li>List Item</li>
+//   <li>List Item</li>
+//   <li>List Item</li>
+//   <li>List Item</li>
+// </ul>
+//
+// Style guide: Global.Lists.Unordered
+
+// Lists (ordered)
+//
+// <ol class="list">
+//   <li>List Item</li>
+//   <li>List Item</li>
+//   <li>List Item</li>
+//   <li>List Item</li>
+// </ol>
+//
+// Style guide: Global.Lists.Ordered
+
+
+// Recreating bullets and numbers because we undo them in the reset;
+// This method is preferable to changing the "display" value back because
+// it allows us more granular and cross-browser control over spacing,
+// plus the ability to style the bullets and numbers.
+// Don't use %list dirctly; use %bullets or %numbers (below)
+.list,
+%list {
+  padding-left: 20px;
+  margin-bottom: 20px;
+  list-style: none;
+
+  li {
+    position: relative;
+    margin-bottom: 20px;
+
+    &::before {
+      position: absolute;
+      margin-left: -20px;
+    }
+
+    ul,
+    ol {
+      margin-top: 20px;
+      padding-left: 35px;
+    }
+  }
+}

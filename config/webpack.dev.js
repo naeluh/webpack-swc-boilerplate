@@ -1,6 +1,7 @@
-const { merge } = require('webpack-merge')
+const magicImporter = require('node-sass-magic-importer');
+const { merge } = require('webpack-merge');
 
-const common = require('./webpack.common')
+const common = require('./webpack.common');
 
 module.exports = merge(common, {
   // Set the mode to development or production
@@ -30,9 +31,17 @@ module.exports = merge(common, {
             options: { sourceMap: true, importLoaders: 1, modules: false },
           },
           { loader: 'postcss-loader', options: { sourceMap: true } },
-          { loader: 'sass-loader', options: { sourceMap: true } },
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true,
+              sassOptions: {
+                importer: magicImporter(),
+              },
+            },
+          },
         ],
       },
     ],
   },
-})
+});

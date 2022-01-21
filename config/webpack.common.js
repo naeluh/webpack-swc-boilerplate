@@ -1,12 +1,12 @@
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-
-const paths = require('./paths')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const glob = require('glob');
+const paths = require('./paths');
 
 module.exports = {
   // Where webpack looks to start building the bundle
-  entry: [paths.src + '/index.js'],
+  entry: glob.sync(paths.src + '/js/**/*.js'),
 
   // Where webpack outputs the assets and bundles
   output: {
@@ -37,7 +37,7 @@ module.exports = {
     // Generates an HTML file from a template
     // Generates deprecation warning: https://github.com/jantimon/html-webpack-plugin/issues/1501
     new HtmlWebpackPlugin({
-      title: 'webpack Boilerplate',
+      title: 'webpack',
       favicon: paths.src + '/images/favicon.png',
       template: paths.src + '/template.html', // template file
       filename: 'index.html', // output file
@@ -48,7 +48,7 @@ module.exports = {
   module: {
     rules: [
       // JavaScript: Use Babel to transpile JavaScript files
-      { test: /\.js$/, use: ['babel-loader'] },
+      { test: /\.m?js$/, use: ['swc-loader'] },
 
       // Images: Copy image files to build folder
       { test: /\.(?:ico|gif|png|jpg|jpeg)$/i, type: 'asset/resource' },
@@ -66,4 +66,4 @@ module.exports = {
       assets: paths.public,
     },
   },
-}
+};

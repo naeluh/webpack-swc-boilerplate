@@ -1,8 +1,8 @@
-# 📦 webpack SWC Boilerplate
+# Webpack SWC SWC Speedy Web Compiler Boilerplate
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-Sensible webpack 5 boilerplate using SWC, PostCSS and Sass.
+Sensible webpack 5 boilerplate using SWC SWC Speedy Web Compiler, PostCSS and Sass.
 
 ## Installation
 
